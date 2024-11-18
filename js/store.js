@@ -1,9 +1,21 @@
 function handleSearch() {
+  // loading animation starts
+loadingAnimationToggle(true);
+
     const searchInputElement = document.getElementById("search-input-field");
     const searchInputValue = searchInputElement.value;
   
     loadPhone(searchInputValue);
   }
+
+  function loadingAnimationToggle(isLoading) {
+  const loaderAnimation = document.getElementById("loader-animation");
+  if (isLoading) {
+    loaderAnimation.classList.remove("hidden");
+  } else {
+    loaderAnimation.classList.add("hidden");
+  }
+}
   
   const loadPhone = async (searchText) => {
     const res = await fetch(
@@ -48,4 +60,7 @@ function handleSearch() {
         
         cardContainer.appendChild(productCard);
     });
+
+    // loading animation ends here
+    loadingAnimationToggle(false);
   };
